@@ -1,49 +1,66 @@
-# Secure Bank Transaction System — Java
+# 🏦 Secure Bank Transaction Monitoring System — Java
 
-A layered Java/Swing desktop banking application converted and redesigned from C++.
-
----
-
-## Default Login Credentials
-
-| Role  | Username | Password  |
-|-------|----------|-----------|
-| Admin | `admin`  | `admin123`|
-
-> A new user account can be created from the login screen using **Create New Account**.
+A modern **desktop banking application** built using **Java Swing**, featuring a layered architecture, MySQL database integration, and real-time API enhancements.
+This project simulates core banking operations with a clean UI and scalable backend design.
 
 ---
 
-## Requirements
+## 🚀 Key Features
 
-- **JDK 11 or higher** (JDK 17 or 21 recommended)
-- No external libraries — uses only the Java standard library
-
-Download the JDK from: https://adoptium.net/
+* 🔐 Secure User Authentication & Account Management
+* 💾 MySQL Database Integration (JDBC-based)
+* 💸 Deposit & Withdrawal Operations
+* 📊 Transaction Monitoring & History Tracking
+* 💱 Real-Time Currency Exchange (API Integration)
+* 🌙 Modern Dark-Themed Dashboard UI
+* 🧾 Admin Dashboard with System Insights
+* ⚙️ Layered Architecture for Scalability
 
 ---
 
-## How to Run
+## 🛠️ Tech Stack
 
-### Option 1 — Windows (easiest)
-Double-click `compile_and_run.bat`
+* **Language:** Java (JDK 11+)
+* **Frontend:** Java Swing (Custom Dark UI)
+* **Backend:** Core Java + Service Layer
+* **Database:** MySQL
+* **Connectivity:** JDBC
+* **API Integration:** REST (Currency Exchange API)
+* **Version Control:** Git & GitHub
 
-### Option 2 — Linux / macOS
+---
+
+## 🔑 Default Login Credentials
+
+| Role  | Username | Password   |
+| ----- | -------- | ---------- |
+| Admin | `admin`  | `admin123` |
+
+> New users can be registered via the **Create New Account** option.
+
+---
+
+## ▶️ How to Run
+
+### 🔹 Option 1 — Windows
+
+```bash
+compile_and_run.bat
+```
+
+### 🔹 Option 2 — Linux / macOS
+
 ```bash
 chmod +x compile_and_run.sh
 ./compile_and_run.sh
 ```
 
-### Option 3 — VS Code with Java Extension Pack
-1. Install the **Extension Pack for Java** from the VS Code Marketplace
-2. Open the `BankTransactionSystem` folder in VS Code
-3. Press **F5** (or Run → Start Debugging) — VS Code auto-detects the project
+### 🔹 Option 3 — Manual Compilation
 
-### Option 4 — Manual (any terminal)
 ```bash
 mkdir -p out
 
-javac -d out -sourcepath src \
+javac -cp ".;mysql-connector-j-9.6.0.jar" -d out -sourcepath src \
   src/bank/exception/*.java \
   src/bank/model/*.java \
   src/bank/util/*.java \
@@ -52,96 +69,136 @@ javac -d out -sourcepath src \
   src/bank/gui/*.java \
   src/BankApplication.java
 
-java -cp out BankApplication
+java -cp ".;out;mysql-connector-j-9.6.0.jar" BankApplication
 ```
 
 ---
 
-## Project Structure
+## 🗂️ Project Structure
 
 ```
 BankTransactionSystem/
 ├── src/
-│   ├── BankApplication.java          ← Entry point
+│   ├── BankApplication.java
 │   ├── bank/
-│   │   ├── exception/                ← Custom exceptions
-│   │   │   ├── BankSystemException.java
-│   │   │   ├── AccountNotFoundException.java
-│   │   │   ├── AccountLockedException.java
-│   │   │   ├── AuthenticationException.java
-│   │   │   ├── InsufficientBalanceException.java
-│   │   │   ├── TransactionLimitException.java
-│   │   │   └── ValidationException.java
-│   │   ├── model/                    ← Data classes
-│   │   │   ├── UserAccount.java
-│   │   │   ├── Transaction.java
-│   │   │   ├── TransactionType.java
-│   │   │   └── TransactionStatus.java
-│   │   ├── util/                     ← Utilities
-│   │   │   ├── EncryptionUtil.java
-│   │   │   └── ValidationUtil.java
-│   │   ├── repository/               ← Storage layer
-│   │   │   ├── UserRepository.java
-│   │   │   ├── TransactionRepository.java
-│   │   │   ├── FlatFileUserRepository.java
-│   │   │   └── FlatFileTransactionRepository.java
-│   │   ├── service/                  ← Business logic
-│   │   │   ├── AuthService.java
-│   │   │   ├── AccountService.java
-│   │   │   ├── TransactionService.java
-│   │   │   └── TransactionMonitorService.java
-│   │   └── gui/                      ← Swing UI
-│   │       ├── MainWindow.java
-│   │       ├── LoginPanel.java
-│   │       ├── CreateAccountPanel.java
-│   │       ├── UserDashboardPanel.java
-│   │       └── AdminDashboardPanel.java
-├── .vscode/
-│   ├── launch.json                   ← VS Code run config
-│   └── settings.json                 ← VS Code Java config
-├── compile_and_run.bat               ← Windows build & run
-├── compile_and_run.sh                ← Linux/macOS build & run
+│   │   ├── exception/
+│   │   ├── model/
+│   │   ├── util/
+│   │   ├── repository/
+│   │   ├── service/
+│   │   └── gui/
+├── compile_and_run.bat
+├── compile_and_run.sh
+├── database_schema.sql
 └── README.md
 ```
 
 ---
 
-## Data Storage
-
-The system stores data in two locations created automatically on first run:
-
-| File / Folder               | Contents                                  |
-|-----------------------------|-------------------------------------------|
-| `users.txt`                 | All user accounts (pipe-delimited)        |
-| `bills/<username>_activity.txt` | Transaction history per user          |
-
-These files are created in the **same directory where you run the application**.
-
----
-
-## Business Rules (preserved from C++)
-
-| Operation  | Rule                                              |
-|------------|---------------------------------------------------|
-| Deposit    | Maximum Rs. 50,000 per single transaction         |
-| Withdrawal | Amount must not exceed current balance            |
-| Loan       | Account balance must be ≥ 10% of loan amount      |
-| Login Lock | Account locked for 24 hours after 3 failed attempts |
-
----
-
-## Architecture
+## 🧠 System Architecture
 
 ```
-GUI Layer (Swing)
-      ↓
+GUI Layer (Swing UI)
+        ↓
 Service Layer (Business Logic)
-      ↓
-Repository Layer (Interface + Flat-file impl.)
-      ↓
-Model Layer (Data classes)
+        ↓
+Repository Layer (Data Access)
+        ↓
+Database Layer (MySQL)
 ```
 
-To add a **database** in the future, implement `UserRepository` and
-`TransactionRepository` with JDBC and swap them in `BankApplication.java`.
-No other files need to change.
+✔ Clean separation of concerns
+✔ Easily extendable (e.g., switch to REST backend)
+
+---
+
+## 🗄️ Database Schema (MySQL)
+
+### Users Table
+
+* username (PK)
+* password
+* full_name
+* gender
+* age
+* phone_encrypted
+* email_encrypted
+* role
+* balance
+* last_transaction_amount
+* daily_transaction_count
+* failed_login_attempts
+* lock_timestamp
+
+### Transactions Table
+
+* transaction_id (PK)
+* username
+* type
+* amount
+* status
+* balance_after
+* timestamp
+
+---
+
+## 📊 Business Rules
+
+| Operation  | Rule                                    |
+| ---------- | --------------------------------------- |
+| Deposit    | Max ₹50,000 per transaction             |
+| Withdrawal | Cannot exceed balance                   |
+| Loan       | Requires ≥10% balance                   |
+| Login Lock | Locked after 3 failed attempts (24 hrs) |
+
+---
+
+## 🌐 API Integrations
+
+* 💱 Currency Exchange API (USD → INR live rate)
+* (Expandable for IFSC, SMS, Email, etc.)
+
+---
+
+## 📸 Screenshots
+
+> Add screenshots of your UI here
+> Example:
+
+```
+![Dashboard](screenshots/dashboard.png)
+```
+
+---
+
+## 👨‍💻 Developed By
+
+* **Abhiram Dighe (244011)**
+* **Pracheta Satapathy (244012)**
+
+---
+
+## 🎓 Project Context
+
+This project was developed as part of the **Internal Assessment** for:
+
+* Java Programming
+* Database Management Systems
+
+**Diploma in Computer Engineering — Semester IV**
+
+---
+
+## 🚀 Future Enhancements
+
+* 📱 SMS / Email Notifications
+* 🏦 IFSC Lookup Integration
+* 📈 Investment / Stock Module
+* 🤖 AI Chatbot Assistant
+* 🔐 Advanced Fraud Detection
+
+---
+
+## 📌 License
+
+This project is intended for academic and educational purposes.
