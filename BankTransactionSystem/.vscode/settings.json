@@ -1,0 +1,10 @@
+{
+    "java.project.sourcePaths": ["src"],
+    "java.project.outputPath": "out",
+    "java.project.referencedLibraries": [],
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true,
+    "files.exclude": {
+        "out/": false
+    }
+}
