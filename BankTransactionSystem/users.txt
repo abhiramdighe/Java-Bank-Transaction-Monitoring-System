@@ -1,0 +1,2 @@
+admin|firns678|Admin User|Male|30|>=<;:98765|firnsEgfsp3htr|16000.00|10000.00|3|0|0|ADMIN
+prac|uwfh|prac|Female|18|56789:;<=>|uwfhElrfnq3htr|0.00|0.00|0|0|0|USER

@@ -1,0 +1,22 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "BankApplication",
+            "request": "launch",
+            "mainClass": "BankApplication",
+            "projectName": "BankTransactionSystem_397173e1"
+        },
+        {
+            "type": "java",
+            "name": "Run BankApplication",
+            "request": "launch",
+            "mainClass": "BankApplication",
+            "projectName": "BankTransactionSystem",
+            "classPaths": [
+                "${workspaceFolder}/out"
+            ]
+        }
+    ]
+}
